@@ -141,6 +141,25 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\buttons\new-game-button.png" />
+    <Image Include="..\Resources\buttons\play-button.png" />
+    <Image Include="..\Resources\cells\1-cell.png" />
+    <Image Include="..\Resources\cells\2-cell.png" />
+    <Image Include="..\Resources\cells\3-cell.png" />
+    <Image Include="..\Resources\cells\4-cell.png" />
+    <Image Include="..\Resources\cells\5-cell.png" />
+    <Image Include="..\Resources\cells\6-cell.png" />
+    <Image Include="..\Resources\cells\7-cell.png" />
+    <Image Include="..\Resources\cells\8-cell.png" />
+    <Image Include="..\Resources\cells\blue-cell.png" />
+    <Image Include="..\Resources\cells\bomb-cell.png" />
+    <Image Include="..\Resources\cells\exploded-bomb-cell.png" />
+    <Image Include="..\Resources\cells\flag-cell.png" />
+    <Image Include="..\Resources\cells\gray-cell.png" />
+    <Image Include="..\Resources\icons\clock-icon.png" />
+    <Image Include="..\Resources\icons\flagged-bomb-counter-icon.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
