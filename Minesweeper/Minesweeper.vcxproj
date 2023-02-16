@@ -142,23 +142,23 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Downloads\1-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\2-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\3-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\4-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\5-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\6-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\7-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\8-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\blue-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\bomb-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\clock-icon.png" />
-    <Image Include="..\..\..\..\..\Downloads\exploded-bomb-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\flag-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\flagged-bomb-counter.png" />
-    <Image Include="..\..\..\..\..\Downloads\gray-cell.png" />
-    <Image Include="..\..\..\..\..\Downloads\new-game-button.png" />
-    <Image Include="..\..\..\..\..\Downloads\play-button.png" />
+    <Image Include="..\Resources\buttons\new-game-button.png" />
+    <Image Include="..\Resources\buttons\play-button.png" />
+    <Image Include="..\Resources\cells\1-cell.png" />
+    <Image Include="..\Resources\cells\2-cell.png" />
+    <Image Include="..\Resources\cells\3-cell.png" />
+    <Image Include="..\Resources\cells\4-cell.png" />
+    <Image Include="..\Resources\cells\5-cell.png" />
+    <Image Include="..\Resources\cells\6-cell.png" />
+    <Image Include="..\Resources\cells\7-cell.png" />
+    <Image Include="..\Resources\cells\8-cell.png" />
+    <Image Include="..\Resources\cells\blue-cell.png" />
+    <Image Include="..\Resources\cells\bomb-cell.png" />
+    <Image Include="..\Resources\cells\exploded-bomb-cell.png" />
+    <Image Include="..\Resources\cells\flag-cell.png" />
+    <Image Include="..\Resources\cells\gray-cell.png" />
+    <Image Include="..\Resources\icons\clock-icon.png" />
+    <Image Include="..\Resources\icons\flagged-bomb-counter-icon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

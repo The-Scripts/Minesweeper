@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Resource Files\cells">
-      <UniqueIdentifier>{a6f2b03c-021b-483f-99d6-0ad18bcfb920}</UniqueIdentifier>
+      <UniqueIdentifier>{f9309816-5d3c-4cb3-92dd-15a66f3b5123}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\buttons">
-      <UniqueIdentifier>{c53b39ab-2e3c-452d-92af-db7255a9cfef}</UniqueIdentifier>
+      <UniqueIdentifier>{c2f727ee-3359-420e-a5c4-1e0d430cb72d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\icons">
-      <UniqueIdentifier>{dfc32f22-e9fc-4d30-aaa5-ecb1da66d3ab}</UniqueIdentifier>
+      <UniqueIdentifier>{0de66f0f-a794-4179-81a1-72164da86303}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,56 +29,56 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Downloads\4-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\3-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\2-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\1-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\gray-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\flag-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\blue-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\exploded-bomb-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\bomb-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\8-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\7-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\6-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\5-cell.png">
-      <Filter>Resource Files\cells</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\play-button.png">
-      <Filter>Resource Files\buttons</Filter>
-    </Image>
-    <Image Include="..\..\..\..\..\Downloads\flagged-bomb-counter.png">
+    <Image Include="..\Resources\icons\clock-icon.png">
       <Filter>Resource Files\icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\Downloads\clock-icon.png">
+    <Image Include="..\Resources\icons\flagged-bomb-counter-icon.png">
       <Filter>Resource Files\icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\Downloads\new-game-button.png">
+    <Image Include="..\Resources\buttons\new-game-button.png">
       <Filter>Resource Files\buttons</Filter>
+    </Image>
+    <Image Include="..\Resources\buttons\play-button.png">
+      <Filter>Resource Files\buttons</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\1-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\2-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\3-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\4-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\5-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\6-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\7-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\8-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\blue-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\bomb-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\exploded-bomb-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\flag-cell.png">
+      <Filter>Resource Files\cells</Filter>
+    </Image>
+    <Image Include="..\Resources\cells\gray-cell.png">
+      <Filter>Resource Files\cells</Filter>
     </Image>
   </ItemGroup>
 </Project>
