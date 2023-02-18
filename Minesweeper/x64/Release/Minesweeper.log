@@ -1,7 +1,7 @@
 ﻿  main.cpp
   Generating code
-  4 of 4 functions (100.0%) were compiled.
-    3 functions were new in current compilation
+  1 of 4 functions (25.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Minesweeper.vcxproj -> C:\Users\Łukasz Stępień\source\repos\The-Scripts\Minesweeper\x64\Release\Minesweeper.exe
+  Minesweeper.vcxproj -> C:\Users\Łukasz Stępień\Source\Repos\The-Scripts\Minesweeper\x64\Release\Minesweeper.exe
