@@ -1,13 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace std;
 using namespace sf;
 
+RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
+
+void initFonts();
+
 int main()
 {
-    RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
-
-
     // Game loop
     while (window.isOpen())
     {
@@ -23,10 +25,30 @@ int main()
         }
         window.clear();
         window.display();
+        initFonts();
     }
 
     
     // End of the app
 
     return 0;
+}
+
+//Function initiating fonts
+void initFonts() {
+
+    Font timersFont; Font bombIndicatorFont;
+    if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf"))
+    {
+        cout << "# The font did'n load! #" << endl;
+        cout << "# Pixellettersfull.ttf #" << endl;
+    }
+    if (!timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
+    {
+        cout << "# The font did'n load! #" << endl;
+        cout << "# Cabal.ttf            #" << endl;
+    }
+    Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!"); 
+    window.draw(test);
+
 }
