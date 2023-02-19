@@ -1,3 +1,4 @@
+#include "SpriteImage.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -10,6 +11,9 @@ void initFonts();
 
 int main()
 {
+    SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
+
+
     // Game loop
     while (window.isOpen())
     {
@@ -23,7 +27,8 @@ int main()
                 window.close();
             }
         }
-        window.clear();
+        window.clear(Color(45, 45, 45, 255));
+        window.draw(timer.sprite);
         window.display();
         initFonts();
     }
