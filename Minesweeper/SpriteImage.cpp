@@ -20,7 +20,7 @@ SpriteImage::SpriteImage(String path, float width, float height, float pos_x, fl
 	sprite.setPosition(pos_x, pos_y);
 
 	// Set width and height
-	sprite.setScale(Vector2f(width, height));
+	sprite.setScale(Vector2f(width, height)); 
 }
 
 SpriteImage::~SpriteImage()

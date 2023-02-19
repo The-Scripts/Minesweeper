@@ -12,7 +12,7 @@ void initFonts();
 int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
-
+    SpriteImage counter("../Resources/icons/flagged-bomb-counter-icon.png", 1.f, 1.f, 15.f, 2.f);
 
     // Game loop
     while (window.isOpen())
@@ -29,6 +29,7 @@ int main()
         }
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
+        window.draw(counter.sprite);
         window.display();
         initFonts();
     }

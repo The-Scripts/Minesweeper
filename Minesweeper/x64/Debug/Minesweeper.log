@@ -1,6 +1,2 @@
 ﻿  main.cpp
-  SpriteImage.cpp
-C:\Users\Łukasz Stępień\source\repos\The-Scripts\Minesweeper\Minesweeper\SpriteImage.cpp(13,3): warning C4551: function call missing argument list
-  Generating Code...
-  LINK : C:\Users\Łukasz Stępień\Source\Repos\The-Scripts\Minesweeper\x64\Debug\Minesweeper.exe not found or not built by the last incremental link; performing full link
   Minesweeper.vcxproj -> C:\Users\Łukasz Stępień\Source\Repos\The-Scripts\Minesweeper\x64\Debug\Minesweeper.exe
