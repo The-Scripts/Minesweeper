@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RenderImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\buttons\new-game-button.png" />
@@ -159,6 +160,9 @@
     <Image Include="..\Resources\cells\gray-cell.png" />
     <Image Include="..\Resources\icons\clock-icon.png" />
     <Image Include="..\Resources\icons\flagged-bomb-counter-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RenderImage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
