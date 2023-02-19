@@ -1,21 +1,28 @@
-#include "Game.h"
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 using namespace sf;
 
 int main()
 {
-    // Init game engine
-    Game game;
+    RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 
     // Game loop
-    while (game.running())
+    while (window.isOpen())
     {
-        // Uptade
-        game.uptade();
-        // Render
-        game.render();
+        // Polling events
+        Event event;
+        while (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case Event::Closed:
+                window.close();
+            }
+        }
+        window.clear();
+        window.display();
     }
 
     
