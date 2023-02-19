@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <iostream>
 
 /*
 	Class that acts as the game engine.
@@ -24,6 +25,7 @@ private:
 	// Methods
 	void initVars();
 	void initWindow();
+	void initFonts();
 public:
 	// Constructors / Destructors
 	Game();
@@ -34,7 +36,7 @@ public:
 
 	// Methods
 	void pullEvents();
-	void uptade();
+	void update();
 	void render();
 };
 

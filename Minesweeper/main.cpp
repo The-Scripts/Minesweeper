@@ -13,7 +13,7 @@ int main()
     while (game.running())
     {
         // Uptade
-        game.uptade();
+        game.update();
         // Render
         game.render();
     }

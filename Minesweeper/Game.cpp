@@ -10,6 +10,23 @@ void Game::initVars()
 	this->window = nullptr;
 }
 
+//Function initiating fonts
+void Game::initFonts() {
+    Font timersFont; Font bombIndicatorFont;
+    if (!timersFont.loadFromFile("Resources/fonts/Pixellettersfull.ttf"))
+    {
+        cout << "# The font did'n load! #" << endl;
+        cout << "# Pixellettersfull.ttf #" << endl;
+    }
+    if (!timersFont.loadFromFile("Resources/fonts/Cabal.ttf"))
+    {
+        cout << "# The font did'n load! #" << endl;
+        cout << "# Cabal.ttf            #" << endl;
+    }
+    Text test; test.setFont(timersFont); test.setString("Hello World!"); window->draw(test);
+
+}
+
 void Game::initWindow()
 {
 	this->videoMode.height = 480;
@@ -23,6 +40,7 @@ Game::Game()
 {
 	this->initVars();
 	this->initWindow();
+    this->initFonts();
 }
 
 Game::~Game()
@@ -35,7 +53,7 @@ const bool Game::running() const
 	return this->window->isOpen();
 }
 
-void Game::uptade()
+void Game::update()
 {
     this->pullEvents();
 }
