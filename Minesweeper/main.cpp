@@ -10,12 +10,11 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 void initFonts();
-short* getRandom();
 
 int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
-    Cell cell;
+    Cell cells[256];
    
     // Game loop
     while (window.isOpen())
@@ -32,7 +31,18 @@ int main()
         }
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
-        window.draw(cell.cellRender("../Resources/cells/blue-cell.png", 0.3f, 0.3f, 5.f, 150.f));
+        float x = 20;
+        float y = 150;
+        for (unsigned short i = 0; i < 256; i++)
+        {
+            if (i % 16 == 0)
+            {
+                x = 20;
+                y += 26;
+            }
+            window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, x, y));
+            x += 26;
+        }
         window.display();
         initFonts();
     }
@@ -60,19 +70,4 @@ void initFonts() {
     Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!"); 
     window.draw(test);
 
-}
-
-short* getRandom() {
-
-    static short r[20];
-
-    // set the seed
-    srand((unsigned)time(NULL));
-
-    for (int i = 0; i < 20; ++i) {
-        r[i] = rand()%17;
-        cout << r[i] << endl;
-    }
-
-    return r;
 }
