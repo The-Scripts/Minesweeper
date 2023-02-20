@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SpriteImage.cpp" />
   </ItemGroup>
@@ -162,6 +164,8 @@
     <Image Include="..\Resources\icons\flagged-bomb-counter-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="GameBoard.h" />
     <ClInclude Include="SpriteImage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
