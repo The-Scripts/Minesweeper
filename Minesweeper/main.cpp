@@ -12,19 +12,18 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
+void getRandomNumbs(short* array1, short* array2, short length);
 
 int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
     Cell cells[256];
+    setBombs(cells);
 
     // Init Fonts (temporary script)
     Font timersFont; Font bombIndicatorFont;
     if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
         cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
-
-    Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!");
-    window.draw(test);//testowe linijki
 
     // Game loop
     while (window.isOpen())
@@ -71,31 +70,30 @@ void initCells(Cell * cells)
     }
 }
 
+// Function that set random cell to bomb
 void setBombs(Cell* cells)
 {
     const short ceil = 16;
     const short amtOfBombs = 20;
-    short posX[20] { 0 };
-    short posY[20] { 0 };
-    short tempNumb;
-    bool found;
+    short posX[amtOfBombs] { 0 };
+    short posY[amtOfBombs] { 0 };
 
-    
-
+    // Get random number for position X and Y
     // Providing a seed value
     srand((unsigned)time(NULL));
 
     for (short i = 0; i < amtOfBombs; i++)
     {
-        do
-        {
-            tempNumb = (rand() % 16) + 1;
-            found = false;
-            for (short j = 0; j < amtOfBombs; j++)
-            {
-                
-            }
+        posX[i] = (rand() % 16) + 1;
+        posY[i] = (rand() % 16) + 1;
+    }
 
-        } while (found);
+    // Set bombs
+    for (short i = 0; i < amtOfBombs; i++)
+    {
+        // -1 because arrays starts from 0 not 1
+        const short bombLocation = (posX[i]-1) * (posY[i]-1);
+        cells[bombLocation].setState('b');
+        cells[bombLocation].setNumb(-1);
     }
 }
