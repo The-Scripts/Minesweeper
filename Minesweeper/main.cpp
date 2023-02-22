@@ -35,6 +35,15 @@ int main()
             {
             case Event::Closed:
                 window.close();
+                break;
+            case Event::KeyReleased:
+                switch (event.key.code)
+                {
+                case Keyboard::Escape:
+                    window.close();
+                    break;
+                }
+                break;
             }
         }
         window.clear(Color(45, 45, 45, 255));
