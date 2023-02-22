@@ -1,15 +1,20 @@
 #include "SpriteImage.h"
+#include "Cell.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 using namespace sf;
 
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
+void initCells(Cell * cells);
+
 int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
+    Cell cells[256];
 
     // Init Fonts (temporary script)
     Font timersFont; Font bombIndicatorFont;
@@ -34,10 +39,32 @@ int main()
         }
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
+        initCells(cells);
         window.display();
         
     }
     
     // End of the app
     return 0;
+}
+
+// Function that render game board
+void initCells(Cell * cells)
+{
+    const float marginLeft = 28; // left gameboard margin
+    float gapX = marginLeft;     // gap behind left-right cell
+    float gapY = 160;            // gap behind top-bottom cell
+
+    // drawing 256 cells
+    for (unsigned short i = 0; i < 256; i++)
+    {
+        // if render 16 cells in row make new row 
+        if (i % 16 == 0)
+        {
+            gapX = marginLeft;
+            gapY += 26;
+        }
+        window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, gapX, gapY));
+        gapX += 26;
+    }
 }
