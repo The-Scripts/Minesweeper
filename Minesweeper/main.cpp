@@ -12,6 +12,7 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
+bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
 
 int main()
 {
@@ -45,11 +46,15 @@ int main()
                 }
                 break;
             case Event::MouseButtonReleased:
-                Vector2i position = Mouse::getPosition();
+                Vector2i position = Mouse::getPosition(window);
                 short cellLocation = 0;
                 for (short i = 0; i < 256; i++)
                 {
-                    cout << endl;
+                    if (checkForMouseClick(cells[i].cellRender(0.27f, 0.27f, cells[i].getPosX(), cells[i].getPosY()), window))
+                    {
+                        
+                        cout << i << endl;
+                    }
                 }
             }
         }
@@ -57,7 +62,7 @@ int main()
         window.draw(timer.sprite);
         initCells(cells);
         window.display();
-        
+
     }
     
     // End of the app
@@ -80,6 +85,8 @@ void initCells(Cell * cells)
             gapX = marginLeft;
             gapY += 26;
         }
+        cells[i].setPosX(gapX);
+        cells[i].setPosY(gapY);
         window.draw(cells[i].cellRender(0.27f, 0.27f, gapX, gapY));
         gapX += 26;
     }
@@ -111,4 +118,22 @@ void setBombs(Cell* cells)
         cells[bombLocation].setState('b');
         cells[bombLocation].setNumb(-1);
     }
+}
+
+bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
+{
+
+    int mouseX = sf::Mouse::getPosition().x;
+    int mouseY = sf::Mouse::getPosition().y;
+
+    sf::Vector2i windowPosition = window.getPosition();
+
+    if (mouseX > sprite.getPosition().x + windowPosition.x && mouseX < (sprite.getPosition().x + sprite.getGlobalBounds().width + windowPosition.x)
+        && mouseY > sprite.getPosition().y + windowPosition.y + 30 && mouseY < (sprite.getPosition().y + sprite.getGlobalBounds().height + windowPosition.y + 30))
+    {
+        return true;
+    }
+
+    return false;
+
 }
