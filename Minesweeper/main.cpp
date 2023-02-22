@@ -10,6 +10,7 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 void initFonts();
+void initCells(Cell * cells);
 
 int main()
 {
@@ -31,18 +32,7 @@ int main()
         }
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
-        float x = 20;
-        float y = 150;
-        for (unsigned short i = 0; i < 256; i++)
-        {
-            if (i % 16 == 0)
-            {
-                x = 20;
-                y += 26;
-            }
-            window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, x, y));
-            x += 26;
-        }
+        initCells(cells);
         window.display();
         initFonts();
     }
@@ -70,4 +60,25 @@ void initFonts() {
     Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!"); 
     window.draw(test);
 
+}
+
+// Function that render game board
+void initCells(Cell * cells)
+{
+    const float marginLeft = 28; // left gameboard margin
+    float gapX = marginLeft;     // gap behind left-right cell
+    float gapY = 160;            // gap behind top-bottom cell
+
+    // drawing 256 cells
+    for (unsigned short i = 0; i < 256; i++)
+    {
+        // if render 16 cells in row make new row 
+        if (i % 16 == 0)
+        {
+            gapX = marginLeft;
+            gapY += 26;
+        }
+        window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, gapX, gapY));
+        gapX += 26;
+    }
 }
