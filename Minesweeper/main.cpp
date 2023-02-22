@@ -10,6 +10,7 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 void initCells(Cell * cells);
+void setBombs(Cell * cells);
 
 int main()
 {
@@ -67,4 +68,9 @@ void initCells(Cell * cells)
         window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, gapX, gapY));
         gapX += 26;
     }
+}
+
+void setBombs(Cell* cells)
+{
+
 }
