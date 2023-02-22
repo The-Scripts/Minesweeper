@@ -12,7 +12,6 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
-void getRandomNumbs(short* array1, short* array2, short length);
 
 int main()
 {
