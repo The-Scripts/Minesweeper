@@ -4,14 +4,35 @@
 Cell::Cell()
 {
 	this->state = 'e';
+	clickOnBomb = false;
 }
 
 Cell::~Cell()
 {
 }
 
-Sprite Cell::cellRender(String path, float width, float height, float pos_x, float pos_y)
+Sprite Cell::cellRender(float width, float height, float pos_x, float pos_y)
 {
+	String path;
+	switch (this->state)
+	{
+	case 'e':
+		path = "../Resources/cells/blue-cell.png";
+		break;
+	case 'b':
+		if (clickOnBomb)
+		{
+			path == "../Resources/cells/bomb-cell.png";
+		}
+		else
+		{
+			path = "../Resources/cells/blue-cell.png";
+		}
+		break;
+	case 'f':
+		path = "../Resources/cells/flag-cell.png";
+		break;
+	}
 	// When image deosn't exist
 	if (!texture.loadFromFile(path))
 	{

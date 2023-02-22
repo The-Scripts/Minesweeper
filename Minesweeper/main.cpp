@@ -44,6 +44,13 @@ int main()
                     break;
                 }
                 break;
+            case Event::MouseButtonReleased:
+                Vector2i position = Mouse::getPosition();
+                short cellLocation = 0;
+                for (short i = 0; i < 256; i++)
+                {
+                    cout << endl;
+                }
             }
         }
         window.clear(Color(45, 45, 45, 255));
@@ -73,7 +80,7 @@ void initCells(Cell * cells)
             gapX = marginLeft;
             gapY += 26;
         }
-        window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, gapX, gapY));
+        window.draw(cells[i].cellRender(0.27f, 0.27f, gapX, gapY));
         gapX += 26;
     }
 }

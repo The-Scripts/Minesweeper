@@ -17,13 +17,14 @@ public:
 	~Cell();
 
 	// Objects
-	Sprite cellRender(String path, float width, float height, float pos_x, float pos_y);
+	Sprite cellRender(float width, float height, float pos_x, float pos_y);
 	
 	// Variables
 	Sprite sprite;
 	Texture texture;
 	float posX;
 	float posY;
+	bool clickOnBomb;
 
 	// Methods
 	// Getters
