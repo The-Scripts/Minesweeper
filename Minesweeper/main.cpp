@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdlib.h>
+#include <ctime>
 
 using namespace std;
 using namespace sf;
@@ -72,5 +73,29 @@ void initCells(Cell * cells)
 
 void setBombs(Cell* cells)
 {
+    const short ceil = 16;
+    const short amtOfBombs = 20;
+    short posX[20] { 0 };
+    short posY[20] { 0 };
+    short tempNumb;
+    bool found;
 
+    
+
+    // Providing a seed value
+    srand((unsigned)time(NULL));
+
+    for (short i = 0; i < amtOfBombs; i++)
+    {
+        do
+        {
+            tempNumb = (rand() % 16) + 1;
+            found = false;
+            for (short j = 0; j < amtOfBombs; j++)
+            {
+                
+            }
+
+        } while (found);
+    }
 }
