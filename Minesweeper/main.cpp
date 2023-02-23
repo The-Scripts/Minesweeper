@@ -13,30 +13,31 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 
-Text timeTimer;
+Text timeTimer; //variable displayed as a clock
 
 int minutesTimer = 0, secondsTimer = 0;
-Clock clockTimer;
-    
+Clock clockTimer; //start the clock
+
+//function that sets the time and displays the clock
 void timerFun() {
 
-    Time elapsed = seconds(0.00f);
-    elapsed = clockTimer.getElapsedTime();
+    Time elapsed = clockTimer.getElapsedTime();
 
-    cout << elapsed.asSeconds() << endl;
+    if (elapsed.asSeconds() >= 1.0) { //every 1 second
 
-    if (elapsed.asSeconds() == 1) {
-        clockTimer.restart();
+        elapsed += clockTimer.restart();
         secondsTimer++;
 
-        if (secondsTimer == 60) {
+        if (secondsTimer == 60) { //every 1 minute
 
             minutesTimer++;
             secondsTimer = 0;
         }
+        cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
     }
-    timeTimer.setString(minutesTimer + ":" + secondsTimer);
-    //cout << minutesTimer + ":" + secondsTimer << endl;
+
+    timeTimer.setString(minutesTimer + ": " + secondsTimer);
+    window.draw(timeTimer);
 }
 
 int main()
@@ -48,7 +49,7 @@ int main()
     if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
         cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
 
-    Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!");//testowe linijki
+    Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!");//test text variable
 
     // Game loop
     while (window.isOpen())
