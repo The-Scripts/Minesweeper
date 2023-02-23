@@ -14,20 +14,29 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 
 Text timeTimer;
+
+int minutesTimer = 0, secondsTimer = 0;
+Clock clockTimer;
     
 void timerFun() {
 
-    int minutesTimer = 0; int secondsTimer = 0;
+    Time elapsed = seconds(0.00f);
+    elapsed = clockTimer.getElapsedTime();
 
-    timeTimer.setString(minutesTimer + ":" + secondsTimer);
-    sleep(seconds(1.0));
-    secondsTimer++;
+    cout << elapsed.asSeconds() << endl;
+
+    if (elapsed.asSeconds() == 1) {
+        clockTimer.restart();
+        secondsTimer++;
 
         if (secondsTimer == 60) {
 
             minutesTimer++;
             secondsTimer = 0;
         }
+    }
+    timeTimer.setString(minutesTimer + ":" + secondsTimer);
+    //cout << minutesTimer + ":" + secondsTimer << endl;
 }
 
 int main()
