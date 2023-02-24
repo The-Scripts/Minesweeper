@@ -1,10 +1,6 @@
 #include "SpriteImage.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <cstdio>
-#include <ctime>
-#include <iomanip>
-#include <stdlib.h>
 
 
 using namespace std;
@@ -33,11 +29,10 @@ void timerFun() {
             minutesTimer++;
             secondsTimer = 0;
         }
-        cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
+        //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
     }
-
-    timeTimer.setString(minutesTimer + ": " + secondsTimer);
-    window.draw(timeTimer);
+    timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
+    window.draw(timeTimer); //display clock
 }
 
 int main()
@@ -49,7 +44,8 @@ int main()
     if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
         cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
 
-    Text test; test.setFont(timersFont); test.setFillColor(Color::Red); test.setCharacterSize(24); test.setString("Hello World!");//test text variable
+    timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(385, 30));
+    
 
     // Game loop
     while (window.isOpen())
@@ -67,7 +63,6 @@ int main()
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
         timerFun();
-        window.draw(timeTimer);
         window.display();
         
     }
