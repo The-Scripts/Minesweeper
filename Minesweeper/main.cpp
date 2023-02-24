@@ -14,26 +14,7 @@ Text timeTimer; //variable displayed as a clock
 int minutesTimer = 0, secondsTimer = 0;
 Clock clockTimer; //start the clock
 
-//function that sets the time and displays the clock
-void timerFun() {
-
-    Time elapsed = clockTimer.getElapsedTime();
-
-    if (elapsed.asSeconds() >= 1.0) { //every 1 second
-
-        elapsed += clockTimer.restart();
-        secondsTimer++;
-
-        if (secondsTimer == 60) { //every 1 minute
-
-            minutesTimer++;
-            secondsTimer = 0;
-        }
-        //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
-    }
-    timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
-    window.draw(timeTimer); //display clock
-}
+void timerFun();
 
 int main()
 {
@@ -69,4 +50,25 @@ int main()
     
     // End of the app
     return 0;
+}
+
+//function that sets the time and displays the clock
+void timerFun() {
+
+    Time elapsed = clockTimer.getElapsedTime();
+
+    if (elapsed.asSeconds() >= 1.0) { //every 1 second
+
+        elapsed += clockTimer.restart();
+        secondsTimer++;
+
+        if (secondsTimer == 60) { //every 1 minute
+
+            minutesTimer++;
+            secondsTimer = 0;
+        }
+        //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
+    }
+    timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
+    window.draw(timeTimer); //display clock
 }
