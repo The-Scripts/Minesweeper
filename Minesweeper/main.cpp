@@ -71,4 +71,3 @@ void timerFun() {
     timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
     window.draw(timeTimer); //display clock
 }
-
