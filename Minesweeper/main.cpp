@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-
 using namespace std;
 using namespace sf;
 
@@ -72,3 +71,4 @@ void timerFun() {
     timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
     window.draw(timeTimer); //display clock
 }
+
