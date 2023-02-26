@@ -56,10 +56,7 @@ int main()
                         if (event.mouseButton.button == Mouse::Left)
                         {
                             if (cells[i].getState() == 'b')
-                            {
                                 uncoverAllCells(cells);
-                                break;
-                            }
                             cells[i].click = true;
                         }
                         else if (event.mouseButton.button == Mouse::Right)
