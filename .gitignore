@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs
+x64/Debug/Minesweeper.pdb
+x64/Debug/Minesweeper.exe
+Minesweeper/x64/Debug/vc143.pdb
+Minesweeper/x64/Debug/vc143.idb
+Minesweeper/x64/Debug/Minesweeper.tlog/link.write.1.tlog
+Minesweeper/x64/Debug/Minesweeper.tlog/link.read.1.tlog
+Minesweeper/x64/Debug/Minesweeper.log
+Minesweeper/x64/Debug/Minesweeper.ilk
+Minesweeper/x64/Debug/main.obj
