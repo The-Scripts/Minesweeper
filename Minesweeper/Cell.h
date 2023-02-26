@@ -23,12 +23,14 @@ public:
 	
 	// Methods
 	Sprite cellRender(float width, float height, float pos_x, float pos_y);
+
 	// Getters
 	char getState();
 	short getNumb();
 	float getPosX();
 	float getPosY();
 	bool getIsClick();
+
 	// Setters
 	void setState(char state);
 	void setNumb(short numb);
