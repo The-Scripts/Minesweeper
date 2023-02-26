@@ -29,6 +29,7 @@ int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
     Cell cells[256];
+    bool endGame{false}; // Stopping game loop
     setBombs(cells);
 
     // Init Fonts (temporary script)
@@ -39,7 +40,7 @@ int main()
     timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(385, 30));
 
     // Game loop
-    while (window.isOpen())
+    while (window.isOpen() && (endGame == false))
     {
         // Polling events
         Event event;
@@ -68,7 +69,10 @@ int main()
                         if (event.mouseButton.button == Mouse::Left)
                         {
                             if (cells[i].getState() == 'b')
+                            {
                                 uncoverAllCells(cells);
+                                endGame = true;
+                            }
                             cells[i].setIsClick(true);
                         }
                         else if (event.mouseButton.button == Mouse::Right)
@@ -78,15 +82,48 @@ int main()
                         }
                     }
                 }
+                break;
             }
         }
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
         initCells(cells);
         timerFun();
+        window.draw(timeTimer); //display clock
         window.display();
+
+        // Ending screen
+        while (endGame)
+        {
+            while (window.pollEvent(event))
+            {
+                switch (event.type)
+                {
+                case Event::Closed:
+                    window.close();
+                    break;
+                case Event::KeyReleased:
+                    switch (event.key.code)
+                    {
+                    case Keyboard::Escape:
+                        window.close();
+                        break;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            window.clear(Color(45, 45, 45, 255));
+            window.draw(timer.sprite);
+            initCells(cells);
+            window.draw(timeTimer); //display clock
+            window.display();
+        }
     }
     
+    
+
     // End of the app
     return 0;
 }
@@ -144,7 +181,8 @@ void setBombs(Cell* cells)
 
 
 //function that sets the time and displays the clock
-void timerFun() {
+void timerFun() 
+{
 
     Time elapsed = clockTimer.getElapsedTime();
 
@@ -161,7 +199,6 @@ void timerFun() {
         //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
     }
     timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
-    window.draw(timeTimer); //display clock
 }
 
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
