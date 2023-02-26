@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\icons">
       <UniqueIdentifier>{0de66f0f-a794-4179-81a1-72164da86303}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{33157d51-3356-468c-ac2d-c7e10e24d1e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,5 +103,19 @@
     <ClInclude Include="GameBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Resources\fonts\Cabal.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\CabalBold.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Pixelletters.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Pixellettersfull.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

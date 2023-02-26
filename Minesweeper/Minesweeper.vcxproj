@@ -168,6 +168,12 @@
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="SpriteImage.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Resources\fonts\Cabal.ttf" />
+    <Font Include="..\Resources\fonts\CabalBold.ttf" />
+    <Font Include="..\Resources\fonts\Pixelletters.ttf" />
+    <Font Include="..\Resources\fonts\Pixellettersfull.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
