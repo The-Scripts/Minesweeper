@@ -69,12 +69,12 @@ int main()
                         {
                             if (cells[i].getState() == 'b')
                                 uncoverAllCells(cells);
-                            cells[i].click = true;
+                            cells[i].setIsClick(true);
                         }
                         else if (event.mouseButton.button == Mouse::Right)
                         {
                             cells[i].setState('f');
-                            cells[i].click = true;
+                            cells[i].setIsClick(true);
                         }
                     }
                 }
@@ -188,6 +188,6 @@ void uncoverAllCells(Cell * cells)
     {
         if (cells[i].getState() == 'b' && cells[i].getNumb() == -1)
             cells[i].setState('x');
-        cells[i].click = true;
+        cells[i].setIsClick(true);
     }
 }
