@@ -1,3 +1,5 @@
-﻿  LINK : C:\Users\Łukasz Stępień\Source\Repos\The-Scripts\Minesweeper\x64\Debug\Minesweeper.exe not found or not built by the last incremental link; performing full link
-Cell.obj : warning LNK4099: PDB '' was not found with 'Cell.obj' or at ''; linking object as if no debug info
+﻿  Cell.cpp
+C:\Users\Łukasz Stępień\source\repos\The-Scripts\Minesweeper\Minesweeper\Cell.cpp(45,3): warning C4551: function call missing argument list
+  main.cpp
+  Generating Code...
   Minesweeper.vcxproj -> C:\Users\Łukasz Stępień\Source\Repos\The-Scripts\Minesweeper\x64\Debug\Minesweeper.exe

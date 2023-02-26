@@ -14,13 +14,16 @@ private:
 	float posX;
 	float posY;
 	bool click;
-	Sprite sprite;
-	Texture texture;
+	
 public: 
 	// Constructor and destructor
 	Cell();
 	~Cell();
 	
+	// Variables
+	Sprite sprite;
+	Texture texture;
+
 	// Methods
 	Sprite cellRender(float width, float height, float pos_x, float pos_y);
 
