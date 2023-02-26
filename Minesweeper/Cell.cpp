@@ -77,6 +77,11 @@ float Cell::getPosY()
 	return this->posY;
 }
 
+bool Cell::getIsClick()
+{
+	return this->click;
+}
+
 // Setters
 void Cell::setState(char state)
 {
@@ -96,4 +101,9 @@ void Cell::setPosX(float posX)
 void Cell::setPosY(float posY)
 {
 	this->posY = posY;
+}
+
+void Cell::setIsClick(bool isClick)
+{
+	this->click = isClick;
 }
