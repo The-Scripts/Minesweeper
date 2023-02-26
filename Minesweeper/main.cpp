@@ -10,9 +10,19 @@ using namespace sf;
 
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
+
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
 void getRandomNumbs(short* array1, short* array2, short length);
+
+
+Text timeTimer; //variable displayed as a clock
+
+int minutesTimer = 0, secondsTimer = 0;
+Clock clockTimer; //start the clock
+
+void timerFun();
+
 
 int main()
 {
@@ -21,9 +31,11 @@ int main()
     setBombs(cells);
 
     // Init Fonts (temporary script)
-    Font timersFont; Font bombIndicatorFont;
+    Font timersFont, bombIndicatorFont;
     if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
         cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
+
+    timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(385, 30));
 
     // Game loop
     while (window.isOpen())
@@ -41,8 +53,8 @@ int main()
         window.clear(Color(45, 45, 45, 255));
         window.draw(timer.sprite);
         initCells(cells);
+        timerFun();
         window.display();
-        
     }
     
     // End of the app
@@ -96,4 +108,25 @@ void setBombs(Cell* cells)
         cells[bombLocation].setState('b');
         cells[bombLocation].setNumb(-1);
     }
+}
+
+//function that sets the time and displays the clock
+void timerFun() {
+
+    Time elapsed = clockTimer.getElapsedTime();
+
+    if (elapsed.asSeconds() >= 1.0) { //every 1 second
+
+        elapsed += clockTimer.restart();
+        secondsTimer++;
+
+        if (secondsTimer == 60) { //every 1 minute
+
+            minutesTimer++;
+            secondsTimer = 0;
+        }
+        //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
+    }
+    timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
+    window.draw(timeTimer); //display clock
 }
