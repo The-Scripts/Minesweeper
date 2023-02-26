@@ -28,6 +28,9 @@ Sprite Cell::cellRender(float width, float height, float pos_x, float pos_y)
 		else
 			path = "../Resources/cells/blue-cell.png";
 		break;
+	case 'x':
+		path = "../Resources/cells/exploded-bomb-cell.png";
+		break;
 	case 'f':
 		if (click)
 			path = "../Resources/cells/flag-cell.png";

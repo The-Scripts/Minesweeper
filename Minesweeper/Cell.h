@@ -9,7 +9,7 @@ class Cell
 {
 private:
 	// Variables
-	char state; // f - flag, b - bomb, e - empty, u - uncover
+	char state; // f - flag, b - bomb, e - empty, u - uncover, x - exploded
 	short numb;
 public: 
 	// Constructor and destructor

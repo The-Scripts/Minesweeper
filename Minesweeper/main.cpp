@@ -13,6 +13,7 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
+void uncoverAllCells(Cell * cells);
 
 int main()
 {
@@ -54,6 +55,11 @@ int main()
                     {
                         if (event.mouseButton.button == Mouse::Left)
                         {
+                            if (cells[i].getState() == 'b')
+                            {
+                                uncoverAllCells(cells);
+                                break;
+                            }
                             cells[i].click = true;
                         }
                         else if (event.mouseButton.button == Mouse::Right)
@@ -143,4 +149,14 @@ bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
 
     return false;
 
+}
+
+void uncoverAllCells(Cell * cells)
+{
+    for (short i = 0; i < 256; i++)
+    {
+        if (cells[i].getState() == 'b' && cells[i].getNumb() == -1)
+            cells[i].setState('x');
+        cells[i].click = true;
+    }
 }
