@@ -52,8 +52,15 @@ int main()
                 {
                     if (checkForMouseClick(cells[i].cellRender(0.27f, 0.27f, cells[i].getPosX(), cells[i].getPosY()), window))
                     {
-                        
-                        cout << i << endl;
+                        if (event.mouseButton.button == Mouse::Left)
+                        {
+                            cells[i].click = true;
+                        }
+                        else if (event.mouseButton.button == Mouse::Right)
+                        {
+                            cells[i].setState('f');
+                            cells[i].click = true;
+                        }
                     }
                 }
             }

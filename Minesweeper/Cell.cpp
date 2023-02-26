@@ -4,7 +4,7 @@
 Cell::Cell()
 {
 	this->state = 'e';
-	clickOnBomb = false;
+	click = false;
 }
 
 Cell::~Cell()
@@ -17,20 +17,22 @@ Sprite Cell::cellRender(float width, float height, float pos_x, float pos_y)
 	switch (this->state)
 	{
 	case 'e':
-		path = "../Resources/cells/blue-cell.png";
+		if (click)
+			path = "../Resources/cells/gray-cell.png";
+		else
+			path = "../Resources/cells/blue-cell.png";
 		break;
 	case 'b':
-		if (clickOnBomb)
-		{
-			path == "../Resources/cells/bomb-cell.png";
-		}
+		if (click)
+			path = "../Resources/cells/bomb-cell.png";
 		else
-		{
 			path = "../Resources/cells/blue-cell.png";
-		}
 		break;
 	case 'f':
-		path = "../Resources/cells/flag-cell.png";
+		if (click)
+			path = "../Resources/cells/flag-cell.png";
+		else
+			path = "../Resources/cells/blue-cell.png";
 		break;
 	}
 	// When image deosn't exist

@@ -24,7 +24,7 @@ public:
 	Texture texture;
 	float posX;
 	float posY;
-	bool clickOnBomb;
+	bool click;
 
 	// Methods
 	// Getters
