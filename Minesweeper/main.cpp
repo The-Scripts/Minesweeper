@@ -13,7 +13,8 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 void initCells(Cell * cells);
 void setBombs(Cell * cells);
-void getRandomNumbs(short* array1, short* array2, short length);
+bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
+void uncoverAllCells(Cell * cells);
 
 
 Text timeTimer; //variable displayed as a clock
@@ -48,6 +49,35 @@ int main()
             {
             case Event::Closed:
                 window.close();
+                break;
+            case Event::KeyReleased:
+                switch (event.key.code)
+                {
+                case Keyboard::Escape:
+                    window.close();
+                    break;
+                }
+                break;
+            case Event::MouseButtonReleased:
+                Vector2i position = Mouse::getPosition(window);
+                short cellLocation = 0;
+                for (short i = 0; i < 256; i++)
+                {
+                    if (checkForMouseClick(cells[i].cellRender(0.27f, 0.27f, cells[i].getPosX(), cells[i].getPosY()), window))
+                    {
+                        if (event.mouseButton.button == Mouse::Left)
+                        {
+                            if (cells[i].getState() == 'b')
+                                uncoverAllCells(cells);
+                            cells[i].click = true;
+                        }
+                        else if (event.mouseButton.button == Mouse::Right)
+                        {
+                            cells[i].setState('f');
+                            cells[i].click = true;
+                        }
+                    }
+                }
             }
         }
         window.clear(Color(45, 45, 45, 255));
@@ -77,7 +107,9 @@ void initCells(Cell * cells)
             gapX = marginLeft;
             gapY += 26;
         }
-        window.draw(cells[i].cellRender("../Resources/cells/blue-cell.png", 0.27f, 0.27f, gapX, gapY));
+        cells[i].setPosX(gapX);
+        cells[i].setPosY(gapY);
+        window.draw(cells[i].cellRender(0.27f, 0.27f, gapX, gapY));
         gapX += 26;
     }
 }
@@ -110,6 +142,7 @@ void setBombs(Cell* cells)
     }
 }
 
+
 //function that sets the time and displays the clock
 void timerFun() {
 
@@ -129,4 +162,31 @@ void timerFun() {
     }
     timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
     window.draw(timeTimer); //display clock
+
+bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
+{
+
+    int mouseX = sf::Mouse::getPosition().x;
+    int mouseY = sf::Mouse::getPosition().y;
+
+    sf::Vector2i windowPosition = window.getPosition();
+
+    if (mouseX > sprite.getPosition().x + windowPosition.x && mouseX < (sprite.getPosition().x + sprite.getGlobalBounds().width + windowPosition.x)
+        && mouseY > sprite.getPosition().y + windowPosition.y + 30 && mouseY < (sprite.getPosition().y + sprite.getGlobalBounds().height + windowPosition.y + 30))
+    {
+        return true;
+    }
+
+    return false;
+
+}
+
+void uncoverAllCells(Cell * cells)
+{
+    for (short i = 0; i < 256; i++)
+    {
+        if (cells[i].getState() == 'b' && cells[i].getNumb() == -1)
+            cells[i].setState('x');
+        cells[i].click = true;
+    }
 }

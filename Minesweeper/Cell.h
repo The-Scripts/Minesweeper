@@ -9,7 +9,7 @@ class Cell
 {
 private:
 	// Variables
-	char state; // f - flag, b - bomb, e - empty, u - uncover
+	char state; // f - flag, b - bomb, e - empty, u - uncover, x - exploded
 	short numb;
 public: 
 	// Constructor and destructor
@@ -17,13 +17,14 @@ public:
 	~Cell();
 
 	// Objects
-	Sprite cellRender(String path, float width, float height, float pos_x, float pos_y);
+	Sprite cellRender(float width, float height, float pos_x, float pos_y);
 	
 	// Variables
 	Sprite sprite;
 	Texture texture;
 	float posX;
 	float posY;
+	bool click;
 
 	// Methods
 	// Getters
