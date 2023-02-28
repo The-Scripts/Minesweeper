@@ -4,7 +4,8 @@
 Cell::Cell()
 {
 	this->state = 'e';
-	click = false;
+	this->click = false;
+	this->numb = 0;
 }
 
 Cell::~Cell()

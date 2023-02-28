@@ -175,7 +175,13 @@ void setBombs(Cell* cells)
         // -1 because arrays starts from 0 not 1
         const short bombLocation = (posX[i]-1) * (posY[i]-1);
         cells[bombLocation].setState('b');
-        cells[bombLocation].setNumb(-1);
+        cells[bombLocation - 1].setNumb(cells[bombLocation].getNumb() + 1);
+        cells[bombLocation + 1].setNumb(cells[bombLocation].getNumb() + 1);
+        for (short i = 15; i < 18; i++)
+        {
+            cells[bombLocation + i].setNumb(cells[bombLocation].getNumb() + 1);
+            cells[bombLocation - i].setNumb(cells[bombLocation].getNumb() + 1);
+        }
     }
 }
 
