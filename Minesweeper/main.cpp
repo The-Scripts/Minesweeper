@@ -4,6 +4,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <random>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 using namespace sf;
@@ -161,26 +164,52 @@ void setBombs(Cell* cells)
 
     // Get random number for position X and Y
     // Providing a seed value
-    srand((unsigned)time(NULL));
 
     for (short i = 0; i < amtOfBombs; i++)
     {
-        posX[i] = (rand() % 16) + 1;
-        posY[i] = (rand() % 16) + 1;
+        srand((unsigned)time(NULL));
+
+        short tempX;
+        short tempY;
+        bool found;
+        
+            do
+            {
+
+                tempX = (rand() % 16) + 1;
+                tempY = (rand() % 16) + 1;
+                found = false;
+                for (short j = 0; j < amtOfBombs; j++)
+                {
+                    if (tempX * tempY == posX[j] * posY[j])
+                    {
+                        found = true;
+                    }
+                }
+                
+            } while (found);
+        
+        posX[i] = tempX;
+        posY[i] = tempY;
+        cout << posX[i] * posY[i] << endl;
     }
 
     // Set bombs
     for (short i = 0; i < amtOfBombs; i++)
     {
         // -1 because arrays starts from 0 not 1
-        const short bombLocation = (posX[i]-1) * (posY[i]-1);
+        const short bombLocation = (posX[i] * posY[i]) - 1;
         cells[bombLocation].setState('b');
-        cells[bombLocation - 1].setNumb(cells[bombLocation].getNumb() + 1);
-        cells[bombLocation + 1].setNumb(cells[bombLocation].getNumb() + 1);
+        if (bombLocation % 15 != 0)
+            cells[bombLocation - 1].setNumb(cells[bombLocation].getNumb() + 1);
+        if (bombLocation % 16 != 0)
+            cells[bombLocation + 1].setNumb(cells[bombLocation].getNumb() + 1);
         for (short i = 15; i < 18; i++)
         {
-            cells[bombLocation + i].setNumb(cells[bombLocation].getNumb() + 1);
-            cells[bombLocation - i].setNumb(cells[bombLocation].getNumb() + 1);
+            if (bombLocation - 1 % 16 != 0)
+                cells[bombLocation + i].setNumb(cells[bombLocation].getNumb() + 1);
+            if (bombLocation % 15 != 0)
+                cells[bombLocation - i].setNumb(cells[bombLocation].getNumb() + 1);
         }
     }
 }
