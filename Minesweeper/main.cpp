@@ -157,16 +157,14 @@ void initCells(Cell * cells)
 // Function that set random cell to bomb
 void setBombs(Cell* cells)
 {
-    const short ceil = 16;
     const short amtOfBombs = 30;
     short posX[amtOfBombs] { 0 };
     short posY[amtOfBombs] { 0 };
 
     // Get random number for position X and Y
-    // Providing a seed value
-
     for (short i = 0; i < amtOfBombs; i++)
     {
+        // Providing a seed value
         srand((unsigned)time(NULL));
 
         short tempX;
@@ -175,7 +173,7 @@ void setBombs(Cell* cells)
         
         do
         {
-
+            // Random
             tempX = (rand() % 16) + 1;
             tempY = (rand() % 16) + 1;
             found = false;
@@ -189,21 +187,56 @@ void setBombs(Cell* cells)
         
         posX[i] = tempX;
         posY[i] = tempY;
-        cout << posX[i] * posY[i] << endl;
     }
 
+    const short firstCells[16]{ 0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240 };
+    short lastCells[16]{ 15, 31, 47, 63, 79, 95, 111, 127, 159, 175, 191, 207, 223, 239, 255 };
     // Set bombs
     for (short i = 0; i < amtOfBombs; i++)
     {
         // -1 because arrays starts from 0 not 1
         const short bombLocation = (posX[i] * posY[i]) - 1;
+        cout << bombLocation << " " << bombLocation % 16 << endl;
         cells[bombLocation].setState('b');
-        cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
-        cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
-        for (short j = 15; j < 18; j++)
+
+        bool bombOnFirstCell{ false };
+        bool bombOnLastCell{ false };
+        for (short i = 0; i < 16; i++)
         {
-            cells[bombLocation - j].setNumb(cells[bombLocation - j].getNumb() + 1);
-            cells[bombLocation + j].setNumb(cells[bombLocation + j].getNumb() + 1);
+            if (bombLocation == firstCells[i])
+            {
+                bombOnFirstCell = true;
+                cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                cells[bombLocation + 17].setNumb(cells[bombLocation + 17].getNumb() + 1);
+                cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
+                cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
+                break;
+
+            }
+            else if (bombLocation == lastCells[i])
+            {
+                bombOnFirstCell = true;
+                cells[bombLocation + 15].setNumb(cells[bombLocation + 15].getNumb() + 1);
+                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+                cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
+                cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
+                break;
+            }
+        }
+
+        if (bombOnFirstCell == false && bombOnLastCell == false)
+        {
+            cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+            cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+            for (short j = 15; j < 18; j++)
+            {
+                // Top
+                cells[bombLocation - j].setNumb(cells[bombLocation - j].getNumb() + 1);
+                // Buttom
+                cells[bombLocation + j].setNumb(cells[bombLocation + j].getNumb() + 1);
+            }
         }
     }
 }
