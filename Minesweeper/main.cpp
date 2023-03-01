@@ -5,8 +5,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <random>
-#include <algorithm>
-#include <vector>
+#include <array>
 
 using namespace std;
 using namespace sf;
@@ -15,10 +14,10 @@ RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style:
 
 
 void initCells(Cell* cells);
-void setBombs(Cell* cells);
+short setBombs(Cell* cells);
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
 void uncoverAllCells(Cell* cells);
-
+void checkFlags(const short amtOfBombs, short* bombsPositions, short* flagsPositions, bool endGame);
 
 Text timeTimer; //variable displayed as a clock
 
@@ -33,7 +32,10 @@ int main()
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
     Cell cells[256];
     bool endGame{ false }; // Stopping game loop
-    setBombs(cells);
+    short bombPositions = setBombs(cells);
+    const short amtOfBombs = 30;
+    short flagsPositions[amtOfBombs]{ -1 };
+    short flags{ 0 };
 
     // Init Fonts (temporary script)
     Font timersFont, bombIndicatorFont;
@@ -51,9 +53,11 @@ int main()
         {
             switch (event.type)
             {
+            // Wiondow
             case Event::Closed:
                 window.close();
                 break;
+            // Keyboard
             case Event::KeyReleased:
                 switch (event.key.code)
                 {
@@ -62,13 +66,13 @@ int main()
                     break;
                 }
                 break;
+            // Mouse
             case Event::MouseButtonReleased:
-                Vector2i position = Mouse::getPosition(window);
-                short cellLocation = 0;
                 for (short i = 0; i < 256; i++)
                 {
                     if (checkForMouseClick(cells[i].cellRender(0.27f, 0.27f, cells[i].getPosX(), cells[i].getPosY()), window))
                     {
+                        // Uncover cell
                         if (event.mouseButton.button == Mouse::Left)
                         {
                             if (cells[i].getState() == 'b')
@@ -78,19 +82,27 @@ int main()
                             }
                             cells[i].setIsClick(true);
                         }
+                        // Flag
                         else if (event.mouseButton.button == Mouse::Right)
                         {
                             if (cells[i].getState() == 'f')
                             {
+                                // Unflag
                                 cells[i].setState('e');
                                 cells[i].setIsClick(false);
+                                flagsPositions[flags] = -1;
+                                flags--;
                             } 
-                            else
+                            else if (flags < amtOfBombs && cells[i].getIsClick() == false)
                             {
+                                // Set flag
                                 cells[i].setState('f');
                                 cells[i].setIsClick(true);
+                                flags++;
+                                flagsPositions[flags] = i;
+                                if (flags == amtOfBombs)
+                                    checkFlags(amtOfBombs, &bombPositions, flagsPositions, &endGame);
                             }
-                            
                         }
                     }
                 }
@@ -164,12 +176,12 @@ void initCells(Cell* cells)
 }
 
 // Function that set random cell to bomb
-void setBombs(Cell* cells)
+short setBombs(Cell* cells)
 {
     const short amtOfBombs = 30;
     short posX[amtOfBombs]{ 0 };
     short posY[amtOfBombs]{ 0 };
-
+    short bombPosition[amtOfBombs]{ 0 };
     // Get random number for position X and Y
     for (short i = 0; i < amtOfBombs; i++)
     {
@@ -209,6 +221,7 @@ void setBombs(Cell* cells)
     {
         // -1 because arrays starts from 0 not 1
         const short bombLocation = (posX[i] * posY[i]) - 1;
+        bombPosition[i] = bombLocation;
         // Set state on bomb
         cells[bombLocation].setState('b');
 
@@ -267,6 +280,8 @@ void setBombs(Cell* cells)
             }
         }
     }
+
+    return *bombPosition;
 }
 
 
@@ -317,4 +332,16 @@ void uncoverAllCells(Cell* cells)
             cells[i].setState('x');
         cells[i].setIsClick(true);
     }
+}
+
+void checkFlags(const short amtOfBombs, short* bombsPositions, short* flagsPositions, bool endGame)
+{
+    short flagsOnBombs{ 0 };
+    for (short i = 0; i < amtOfBombs; i++)
+    {
+        if (bombsPositions[i] == flagsPositions[i])
+            flagsOnBombs++;
+    }
+    if (flagsOnBombs == 20)
+        endGame = true;
 }
