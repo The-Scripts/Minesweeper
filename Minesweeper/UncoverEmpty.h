@@ -4,7 +4,7 @@ class UncoverEmpty
 {
 public:
 	// Contructor / Desctructor
-	UncoverEmpty(Cell* cells, short pos);
+	UncoverEmpty();
 	~UncoverEmpty();
 
 	// Methods

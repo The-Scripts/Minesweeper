@@ -1,8 +1,7 @@
 #include "UncoverEmpty.h"
 
-UncoverEmpty::UncoverEmpty(Cell* cells, short pos)
+UncoverEmpty::UncoverEmpty()
 {
-	top(cells, pos);
 }
 
 UncoverEmpty::~UncoverEmpty()
@@ -38,6 +37,17 @@ void UncoverEmpty::lowerRight(Cell* cells, short pos)
 
 void UncoverEmpty::buttom(Cell* cells, short pos)
 {
+	if (cells[pos].getNumb() > 0)
+	{
+		cells[pos].setIsClick(true);
+		return;
+	}
+	else
+	{
+		cells[pos].setIsClick(true);
+	}
+	pos += 16;
+	return buttom(cells, pos);
 }
 
 void UncoverEmpty::lowerLeft(Cell* cells, short pos)

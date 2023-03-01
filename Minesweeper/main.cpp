@@ -1,6 +1,5 @@
 #include "SpriteImage.h"
 #include "Cell.h"
-#include "UncoverEmpty.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdlib.h>
@@ -19,6 +18,8 @@ short setBombs(Cell* cells);
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
 void uncoverAllCells(Cell* cells);
 void checkFlags(const short amtOfBombs, short* bombsPositions, short* flagsPositions, bool endGame);
+void uncoverTop(Cell* cells, short pos);
+void uncoverButtom(Cell* cells, short pos);
 
 Text timeTimer; //variable displayed as a clock
 
@@ -82,7 +83,6 @@ int main()
                                 endGame = true;
                             }
                             cells[i].setIsClick(true);
-                            UncoverEmpty uncoverEmpty(cells, i);
                         }
                         // Flag
                         else if (event.mouseButton.button == Mouse::Right)
