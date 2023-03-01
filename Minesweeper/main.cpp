@@ -14,10 +14,10 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 
-void initCells(Cell * cells);
-void setBombs(Cell * cells);
+void initCells(Cell* cells);
+void setBombs(Cell* cells);
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
-void uncoverAllCells(Cell * cells);
+void uncoverAllCells(Cell* cells);
 
 
 Text timeTimer; //variable displayed as a clock
@@ -32,7 +32,7 @@ int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
     Cell cells[256];
-    bool endGame{false}; // Stopping game loop
+    bool endGame{ false }; // Stopping game loop
     setBombs(cells);
 
     // Init Fonts (temporary script)
@@ -124,15 +124,15 @@ int main()
             window.display();
         }
     }
-    
-    
+
+
 
     // End of the app
     return 0;
 }
 
 // Function that render game board
-void initCells(Cell * cells)
+void initCells(Cell* cells)
 {
     const float marginLeft = 28; // left gameboard margin
     float gapX = marginLeft;     // gap behind left-right cell
@@ -158,8 +158,8 @@ void initCells(Cell * cells)
 void setBombs(Cell* cells)
 {
     const short amtOfBombs = 30;
-    short posX[amtOfBombs] { 0 };
-    short posY[amtOfBombs] { 0 };
+    short posX[amtOfBombs]{ 0 };
+    short posY[amtOfBombs]{ 0 };
 
     // Get random number for position X and Y
     for (short i = 0; i < amtOfBombs; i++)
@@ -170,7 +170,7 @@ void setBombs(Cell* cells)
         short tempX;
         short tempY;
         bool found;
-        
+
         do
         {
             // Random
@@ -183,9 +183,9 @@ void setBombs(Cell* cells)
                 if (tempX * tempY == posX[j] * posY[j])
                     found = true;
             }
-                
-            } while (found);
-        
+
+        } while (found);
+
         posX[i] = tempX;
         posY[i] = tempY;
     }
@@ -262,7 +262,7 @@ void setBombs(Cell* cells)
 
 
 //function that sets the time and displays the clock
-void timerFun() 
+void timerFun()
 {
 
     Time elapsed = clockTimer.getElapsedTime();
@@ -300,7 +300,7 @@ bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
 
 }
 
-void uncoverAllCells(Cell * cells)
+void uncoverAllCells(Cell* cells)
 {
     for (short i = 0; i < 256; i++)
     {
