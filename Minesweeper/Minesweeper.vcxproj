@@ -143,6 +143,7 @@
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SpriteImage.cpp" />
+    <ClCompile Include="UncoverEmpty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\buttons\new-game-button.png" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="SpriteImage.h" />
+    <ClInclude Include="UncoverEmpty.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Resources\fonts\Cabal.ttf" />

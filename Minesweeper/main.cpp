@@ -1,5 +1,6 @@
 #include "SpriteImage.h"
 #include "Cell.h"
+#include "UncoverEmpty.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdlib.h>
