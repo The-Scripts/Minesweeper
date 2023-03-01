@@ -77,8 +77,17 @@ int main()
                         }
                         else if (event.mouseButton.button == Mouse::Right)
                         {
-                            cells[i].setState('f');
-                            cells[i].setIsClick(true);
+                            if (cells[i].getState() == 'f')
+                            {
+                                cells[i].setState('e');
+                                cells[i].setIsClick(false);
+                            } 
+                            else
+                            {
+                                cells[i].setState('f');
+                                cells[i].setIsClick(true);
+                            }
+                            
                         }
                     }
                 }
