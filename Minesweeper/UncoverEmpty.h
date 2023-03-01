@@ -1,18 +1,19 @@
 #pragma once
+#include "Cell.h"
 class UncoverEmpty
 {
 public:
 	// Contructor / Desctructor
-	UncoverEmpty(short& cells, short pos);
+	UncoverEmpty(Cell* cells, short pos);
 	~UncoverEmpty();
 
 	// Methods
-	void top(short& cells, short pos);
-	void upperRight(short& cells, short pos);
-	void right(short& cells, short pos);
-	void lowerRight(short& cells, short pos);
-	void buttom(short& cells, short pos);
-	void lowerLeft(short& cells, short pos);
-	void left(short& cells, short pos);
-	void upperLeft(short& cells, short pos);
+	void top(Cell* cells, short pos);
+	void upperRight(Cell* cells, short pos);
+	void right(Cell* cells, short pos);
+	void lowerRight(Cell* cells, short pos);
+	void buttom(Cell* cells, short pos);
+	void lowerLeft(Cell* cells, short pos);
+	void left(Cell* cells, short pos);
+	void upperLeft(Cell* cells, short pos);
 };

@@ -1,33 +1,53 @@
 #include "UncoverEmpty.h"
 
-void UncoverEmpty::top(short& cells, short pos)
+UncoverEmpty::UncoverEmpty(Cell* cells, short pos)
+{
+	top(cells, pos);
+}
+
+UncoverEmpty::~UncoverEmpty()
 {
 }
 
-void UncoverEmpty::upperRight(short& cells, short pos)
+void UncoverEmpty::top(Cell* cells, short pos)
+{
+	if (cells[pos].getNumb() > 0)
+	{
+		cells[pos].setIsClick(true);
+		return;
+	}
+	else
+	{
+		cells[pos].setIsClick(true);
+	}
+	pos -= 16;
+	return top(cells, pos);
+}
+
+void UncoverEmpty::upperRight(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::right(short& cells, short pos)
+void UncoverEmpty::right(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::lowerRight(short& cells, short pos)
+void UncoverEmpty::lowerRight(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::buttom(short& cells, short pos)
+void UncoverEmpty::buttom(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::lowerLeft(short& cells, short pos)
+void UncoverEmpty::lowerLeft(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::left(short& cells, short pos)
+void UncoverEmpty::left(Cell* cells, short pos)
 {
 }
 
-void UncoverEmpty::upperLeft(short& cells, short pos)
+void UncoverEmpty::upperLeft(Cell* cells, short pos)
 {
 }

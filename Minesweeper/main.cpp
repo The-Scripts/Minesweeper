@@ -82,6 +82,7 @@ int main()
                                 endGame = true;
                             }
                             cells[i].setIsClick(true);
+                            UncoverEmpty uncoverEmpty(cells, i);
                         }
                         // Flag
                         else if (event.mouseButton.button == Mouse::Right)
