@@ -158,7 +158,7 @@ void initCells(Cell * cells)
 void setBombs(Cell* cells)
 {
     const short ceil = 16;
-    const short amtOfBombs = 20;
+    const short amtOfBombs = 30;
     short posX[amtOfBombs] { 0 };
     short posY[amtOfBombs] { 0 };
 
@@ -173,19 +173,17 @@ void setBombs(Cell* cells)
         short tempY;
         bool found;
         
-            do
-            {
+        do
+        {
 
-                tempX = (rand() % 16) + 1;
-                tempY = (rand() % 16) + 1;
-                found = false;
-                for (short j = 0; j < amtOfBombs; j++)
-                {
-                    if (tempX * tempY == posX[j] * posY[j])
-                    {
-                        found = true;
-                    }
-                }
+            tempX = (rand() % 16) + 1;
+            tempY = (rand() % 16) + 1;
+            found = false;
+            for (short j = 0; j < amtOfBombs; j++)
+            {
+                if (tempX * tempY == posX[j] * posY[j])
+                    found = true;
+            }
                 
             } while (found);
         
@@ -200,16 +198,12 @@ void setBombs(Cell* cells)
         // -1 because arrays starts from 0 not 1
         const short bombLocation = (posX[i] * posY[i]) - 1;
         cells[bombLocation].setState('b');
-        if (bombLocation % 15 != 0)
-            cells[bombLocation - 1].setNumb(cells[bombLocation].getNumb() + 1);
-        if (bombLocation % 16 != 0)
-            cells[bombLocation + 1].setNumb(cells[bombLocation].getNumb() + 1);
-        for (short i = 15; i < 18; i++)
+        cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+        cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+        for (short j = 15; j < 18; j++)
         {
-            if (bombLocation - 1 % 16 != 0)
-                cells[bombLocation + i].setNumb(cells[bombLocation].getNumb() + 1);
-            if (bombLocation % 15 != 0)
-                cells[bombLocation - i].setNumb(cells[bombLocation].getNumb() + 1);
+            cells[bombLocation - j].setNumb(cells[bombLocation - j].getNumb() + 1);
+            cells[bombLocation + j].setNumb(cells[bombLocation + j].getNumb() + 1);
         }
     }
 }
