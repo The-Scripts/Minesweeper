@@ -179,6 +179,7 @@ void setBombs(Cell* cells)
             found = false;
             for (short j = 0; j < amtOfBombs; j++)
             {
+                // If temp position is repeat
                 if (tempX * tempY == posX[j] * posY[j])
                     found = true;
             }
@@ -189,46 +190,64 @@ void setBombs(Cell* cells)
         posY[i] = tempY;
     }
 
+    // List of last cells
     const short firstCells[16]{ 0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240 };
+    // List of last cells
     short lastCells[16]{ 15, 31, 47, 63, 79, 95, 111, 127, 159, 175, 191, 207, 223, 239, 255 };
+
     // Set bombs
     for (short i = 0; i < amtOfBombs; i++)
     {
         // -1 because arrays starts from 0 not 1
         const short bombLocation = (posX[i] * posY[i]) - 1;
-        cout << bombLocation << " " << bombLocation % 16 << endl;
+        // Set state on bomb
         cells[bombLocation].setState('b');
 
         bool bombOnFirstCell{ false };
         bool bombOnLastCell{ false };
         for (short i = 0; i < 16; i++)
         {
+            // If bomb is on first cell
             if (bombLocation == firstCells[i])
             {
                 bombOnFirstCell = true;
+                // Right
                 cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+                // Top
                 cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                // Upper right
                 cells[bombLocation + 17].setNumb(cells[bombLocation + 17].getNumb() + 1);
+                // Buttom
                 cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
+                // Lower right
                 cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
                 break;
 
             }
+            // If bomb is on last cell
             else if (bombLocation == lastCells[i])
             {
                 bombOnFirstCell = true;
-                cells[bombLocation + 15].setNumb(cells[bombLocation + 15].getNumb() + 1);
-                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                // Left
                 cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+                // Upper left
+                cells[bombLocation + 15].setNumb(cells[bombLocation + 15].getNumb() + 1);
+                // Top
+                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                // Lower left
                 cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
+                // buttom
                 cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
                 break;
             }
         }
 
+        // If bomb isn't on first or last cell
         if (bombOnFirstCell == false && bombOnLastCell == false)
         {
+            // Left
             cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+            // Right
             cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
             for (short j = 15; j < 18; j++)
             {
@@ -269,7 +288,7 @@ bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
     int mouseX = sf::Mouse::getPosition().x;
     int mouseY = sf::Mouse::getPosition().y;
 
-    sf::Vector2i windowPosition = window.getPosition();
+    Vector2i windowPosition = window.getPosition();
 
     if (mouseX > sprite.getPosition().x + windowPosition.x && mouseX < (sprite.getPosition().x + sprite.getGlobalBounds().width + windowPosition.x)
         && mouseY > sprite.getPosition().y + windowPosition.y + 30 && mouseY < (sprite.getPosition().y + sprite.getGlobalBounds().height + windowPosition.y + 30))
