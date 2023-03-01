@@ -4,7 +4,8 @@
 Cell::Cell()
 {
 	this->state = 'e';
-	click = false;
+	this->click = false;
+	this->numb = 0;
 }
 
 Cell::~Cell()
@@ -18,7 +19,36 @@ Sprite Cell::cellRender(float width, float height, float pos_x, float pos_y)
 	{
 	case 'e':
 		if (click)
-			path = "../Resources/cells/gray-cell.png";
+			switch (numb)
+			{
+			case 0:
+				path = "../Resources/cells/gray-cell.png";
+				break;
+			case 1:
+				path = "../Resources/cells/1-cell.png";
+				break;
+			case 2:
+				path = "../Resources/cells/2-cell.png";
+				break;
+			case 3:
+				path = "../Resources/cells/3-cell.png";
+				break;
+			case 4:
+				path = "../Resources/cells/4-cell.png";
+				break;
+			case 5:
+				path = "../Resources/cells/5-cell.png";
+				break;
+			case 6:
+				path = "../Resources/cells/6-cell.png";
+				break;
+			case 7:
+				path = "../Resources/cells/7-cell.png";
+				break;
+			case 8:
+				path = "../Resources/cells/8-cell.png";
+				break;
+			}
 		else
 			path = "../Resources/cells/blue-cell.png";
 		break;

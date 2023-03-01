@@ -4,6 +4,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <random>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 using namespace sf;
@@ -11,10 +14,10 @@ using namespace sf;
 RenderWindow window(VideoMode(480, 640), "Minesweeper", Style::Titlebar | Style::Close);
 
 
-void initCells(Cell * cells);
-void setBombs(Cell * cells);
+void initCells(Cell* cells);
+void setBombs(Cell* cells);
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window);
-void uncoverAllCells(Cell * cells);
+void uncoverAllCells(Cell* cells);
 
 
 Text timeTimer; //variable displayed as a clock
@@ -29,7 +32,7 @@ int main()
 {
     SpriteImage timer("../Resources/icons/clock-icon.png", 1.f, 1.f, 365.f, 2.f);
     Cell cells[256];
-    bool endGame{false}; // Stopping game loop
+    bool endGame{ false }; // Stopping game loop
     setBombs(cells);
 
     // Init Fonts (temporary script)
@@ -130,15 +133,15 @@ int main()
             window.display();
         }
     }
-    
-    
+
+
 
     // End of the app
     return 0;
 }
 
 // Function that render game board
-void initCells(Cell * cells)
+void initCells(Cell* cells)
 {
     const float marginLeft = 28; // left gameboard margin
     float gapX = marginLeft;     // gap behind left-right cell
@@ -163,34 +166,112 @@ void initCells(Cell * cells)
 // Function that set random cell to bomb
 void setBombs(Cell* cells)
 {
-    const short ceil = 16;
-    const short amtOfBombs = 20;
-    short posX[amtOfBombs] { 0 };
-    short posY[amtOfBombs] { 0 };
+    const short amtOfBombs = 30;
+    short posX[amtOfBombs]{ 0 };
+    short posY[amtOfBombs]{ 0 };
 
     // Get random number for position X and Y
-    // Providing a seed value
-    srand((unsigned)time(NULL));
-
     for (short i = 0; i < amtOfBombs; i++)
     {
-        posX[i] = (rand() % 16) + 1;
-        posY[i] = (rand() % 16) + 1;
+        // Providing a seed value
+        srand((unsigned)time(NULL));
+
+        short tempX;
+        short tempY;
+        bool found;
+
+        do
+        {
+            // Random
+            tempX = (rand() % 16) + 1;
+            tempY = (rand() % 16) + 1;
+            found = false;
+            for (short j = 0; j < amtOfBombs; j++)
+            {
+                // If temp position is repeat
+                if (tempX * tempY == posX[j] * posY[j])
+                    found = true;
+            }
+
+        } while (found);
+
+        posX[i] = tempX;
+        posY[i] = tempY;
     }
+
+    // List of last cells
+    const short firstCells[16]{ 0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240 };
+    // List of last cells
+    short lastCells[16]{ 15, 31, 47, 63, 79, 95, 111, 127, 159, 175, 191, 207, 223, 239, 255 };
 
     // Set bombs
     for (short i = 0; i < amtOfBombs; i++)
     {
         // -1 because arrays starts from 0 not 1
-        const short bombLocation = (posX[i]-1) * (posY[i]-1);
+        const short bombLocation = (posX[i] * posY[i]) - 1;
+        // Set state on bomb
         cells[bombLocation].setState('b');
-        cells[bombLocation].setNumb(-1);
+
+        bool bombOnFirstCell{ false };
+        bool bombOnLastCell{ false };
+        for (short i = 0; i < 16; i++)
+        {
+            // If bomb is on first cell
+            if (bombLocation == firstCells[i])
+            {
+                bombOnFirstCell = true;
+                // Right
+                cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+                // Top
+                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                // Upper right
+                cells[bombLocation + 17].setNumb(cells[bombLocation + 17].getNumb() + 1);
+                // Buttom
+                cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
+                // Lower right
+                cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
+                break;
+
+            }
+            // If bomb is on last cell
+            else if (bombLocation == lastCells[i])
+            {
+                bombOnFirstCell = true;
+                // Left
+                cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+                // Upper left
+                cells[bombLocation + 15].setNumb(cells[bombLocation + 15].getNumb() + 1);
+                // Top
+                cells[bombLocation + 16].setNumb(cells[bombLocation + 16].getNumb() + 1);
+                // Lower left
+                cells[bombLocation - 17].setNumb(cells[bombLocation - 17].getNumb() + 1);
+                // buttom
+                cells[bombLocation - 16].setNumb(cells[bombLocation - 16].getNumb() + 1);
+                break;
+            }
+        }
+
+        // If bomb isn't on first or last cell
+        if (bombOnFirstCell == false && bombOnLastCell == false)
+        {
+            // Left
+            cells[bombLocation - 1].setNumb(cells[bombLocation - 1].getNumb() + 1);
+            // Right
+            cells[bombLocation + 1].setNumb(cells[bombLocation + 1].getNumb() + 1);
+            for (short j = 15; j < 18; j++)
+            {
+                // Top
+                cells[bombLocation - j].setNumb(cells[bombLocation - j].getNumb() + 1);
+                // Buttom
+                cells[bombLocation + j].setNumb(cells[bombLocation + j].getNumb() + 1);
+            }
+        }
     }
 }
 
 
 //function that sets the time and displays the clock
-void timerFun() 
+void timerFun()
 {
 
     Time elapsed = clockTimer.getElapsedTime();
@@ -216,7 +297,7 @@ bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
     int mouseX = sf::Mouse::getPosition().x;
     int mouseY = sf::Mouse::getPosition().y;
 
-    sf::Vector2i windowPosition = window.getPosition();
+    Vector2i windowPosition = window.getPosition();
 
     if (mouseX > sprite.getPosition().x + windowPosition.x && mouseX < (sprite.getPosition().x + sprite.getGlobalBounds().width + windowPosition.x)
         && mouseY > sprite.getPosition().y + windowPosition.y + 30 && mouseY < (sprite.getPosition().y + sprite.getGlobalBounds().height + windowPosition.y + 30))
@@ -228,7 +309,7 @@ bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
 
 }
 
-void uncoverAllCells(Cell * cells)
+void uncoverAllCells(Cell* cells)
 {
     for (short i = 0; i < 256; i++)
     {
