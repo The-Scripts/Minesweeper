@@ -34,9 +34,9 @@ int main()
     short flags{ 0 };
 
     // Init Fonts (temporary script)
-    Font timersFont, bombIndicatorFont;
-    if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
-        cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
+    Font timersFont;
+    if (!timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
+        cout << "# The fonts did'n load! #" << endl << "# Cabal.ttf             #" << endl;
 
     timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(395, 30));
 
