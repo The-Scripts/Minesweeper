@@ -1,11 +1,7 @@
+#include "pch.h"
 #include "SpriteImage.h"
 #include "Cell.h"
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <stdlib.h>
-#include <ctime>
-#include <random>
-#include <array>
+
 
 using namespace std;
 using namespace sf;

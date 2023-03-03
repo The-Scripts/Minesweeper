@@ -1,9 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
-#include "SFML/Graphics.hpp"
+#include "pch.h"
 
 /*
 	By the class we can:
