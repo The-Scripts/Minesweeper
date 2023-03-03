@@ -36,9 +36,6 @@
     <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameBoard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\icons\clock-icon.png">
@@ -98,9 +95,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
