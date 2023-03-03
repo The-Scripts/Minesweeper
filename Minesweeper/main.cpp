@@ -42,7 +42,7 @@ int main()
     if (!timersFont.loadFromFile("../Resources/fonts/Pixellettersfull.ttf") || !timersFont.loadFromFile("../Resources/fonts/Cabal.ttf"))
         cout << "# The fonts did'n load! #" << endl << "# Pixellettersfull.ttf  #" << endl << "# Cabal.ttf             #" << endl;
 
-    timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(385, 30));
+    timeTimer.setFont(timersFont); timeTimer.setPosition(sf::Vector2f(395, 30));
 
     // Game loop
     while (window.isOpen() && (endGame == false))
@@ -67,7 +67,7 @@ int main()
                 }
                 break;
             // Mouse
-            case Event::MouseButtonReleased:
+            case Event::MouseButtonPressed:
                 for (short i = 0; i < 256; i++)
                 {
                     if (checkForMouseClick(cells[i].cellRender(0.27f, 0.27f, cells[i].getPosX(), cells[i].getPosY()), window))
@@ -178,6 +178,9 @@ void initCells(Cell* cells)
 // Function that set random cell to bomb
 short setBombs(Cell* cells)
 {
+    // Providing a seed value
+    srand((unsigned)time(NULL));
+
     const short amtOfBombs = 30;
     short posX[amtOfBombs]{ 0 };
     short posY[amtOfBombs]{ 0 };
@@ -185,8 +188,6 @@ short setBombs(Cell* cells)
     // Get random number for position X and Y
     for (short i = 0; i < amtOfBombs; i++)
     {
-        // Providing a seed value
-        srand((unsigned)time(NULL));
 
         short tempX;
         short tempY;
@@ -214,7 +215,7 @@ short setBombs(Cell* cells)
     // List of last cells
     const short firstCells[16]{ 0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240 };
     // List of last cells
-    short lastCells[16]{ 15, 31, 47, 63, 79, 95, 111, 127, 159, 175, 191, 207, 223, 239, 255 };
+    short lastCells[16]{ 15, 31, 47, 63, 79, 95, 111, 127, 143, 159, 175, 191, 207, 223, 239, 255 };
 
     // Set bombs
     for (short i = 0; i < amtOfBombs; i++)
@@ -303,7 +304,7 @@ void timerFun()
         }
         //cout << minutesTimer << ": " << secondsTimer << endl; //display the clock in the console
     }
-    timeTimer.setString(to_string(minutesTimer) + ": " + to_string(secondsTimer)); //set clock time
+    timeTimer.setString(to_string(minutesTimer) + ":" + to_string(secondsTimer)); //set clock time
 }
 
 bool checkForMouseClick(const Sprite& sprite, RenderWindow& window)
@@ -328,8 +329,9 @@ void uncoverAllCells(Cell* cells)
 {
     for (short i = 0; i < 256; i++)
     {
-        if (cells[i].getState() == 'b' && cells[i].getNumb() == -1)
+        if (cells[i].getState() == 'b')
             cells[i].setState('x');
+
         cells[i].setIsClick(true);
     }
 }
